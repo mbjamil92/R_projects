@@ -1,0 +1,14 @@
+> cor(beta_aud,beta_gbp)
+          [,1]
+[1,] 0.2568211
+> cor(beta_aud,beta_jpy)
+          [,1]
+[1,] 0.4971582
+> cor(beta_jpy,beta_gbp)
+           [,1]
+[1,] -0.3830877
+
+
+From the above correlations and the plots in part (d), from my point of view I think USD_JPY and USD_AUD tend to move opposite direction whereas beta of USD_GBP tends to move together.
+
+I think the result does make sense, the reason can be of the correlations above and also the trends of the plots and the values of the beta coefficients.
