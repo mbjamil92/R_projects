@@ -1,0 +1,71 @@
+Main Code:
+
+> factor_data = read.csv("D:/Yeshiva/Summer 2021/datasets/factors.txt", header=T, sep="")
+> size.factor_data=dim(factor_data)
+> rt = factor_data$rt
+> mkt = factor_data$mkt
+> smb = factor_data$smb
+> hml = factor_data$hml
+
+Code for Model 1:
+
+> model_1 = lm(rt~mkt)
+> summary(model_1)
+
+
+Output for Model 1:
+
+Call:
+lm(formula = rt ~ mkt)
+
+Residuals:
+   Min     1Q Median     3Q    Max 
+-44.31  -2.75   0.43   3.34  25.40 
+
+Coefficients:
+            Estimate Std. Error t value Pr(>|t|)    
+(Intercept)  1.39389    0.26649   5.230 2.27e-07 ***
+mkt         -0.26130    0.06028  -4.334 1.69e-05 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 6.843 on 667 degrees of freedom
+Multiple R-squared:  0.0274,	Adjusted R-squared:  0.02594 
+F-statistic: 18.79 on 1 and 667 DF,  p-value: 1.687e-05
+
+Code for Model 2:
+
+> model_2 = lm(rt~mkt+smb+hml)
+> summary(model_2)
+
+
+Output for Model 2:
+
+Call:
+lm(formula = rt ~ mkt + smb + hml)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-44.933  -2.552   0.616   3.532  20.906 
+
+Coefficients:
+            Estimate Std. Error t value Pr(>|t|)    
+(Intercept)  1.61480    0.26382   6.121 1.59e-09 ***
+mkt         -0.34093    0.06339  -5.378 1.04e-07 ***
+smb         -0.04724    0.08923  -0.529    0.597    
+hml         -0.53677    0.09573  -5.607 3.02e-08 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 6.696 on 665 degrees of freedom
+Multiple R-squared:  0.0717,	Adjusted R-squared:  0.06751 
+F-statistic: 17.12 on 3 and 665 DF,  p-value: 1.014e-10
+
+
+Final Verdict:
+
+Based on the above results of our 2 models, I would choose the 2nd Model based on ‘Fama-French 3 Factor Model’ keeping in view that its R-squared value is 0.0717 is higher than the R-squared value of the 1st model based on ‘CAPM’ which is 0.0274.
+
+The reason why I say this is because at least even though the R-squared value of 2nd model is not tremendously high but it would be able fit 7.717% of the amount of data can be fit into the regression model.
+
+This is certainly higher than the 2.74% of the data from CAPM.
