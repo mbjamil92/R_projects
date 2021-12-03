@@ -1,0 +1,27 @@
+For all of the below scenarios we will use ‘Null Hypothesis’ as Beta = 1, then:
+
+•	US_AUD:
+
+We know that t-statistic = (B1, hat-B1)/se(B1,hat)
+
+From the above data we know SE(standard error) = 1.023928, then 
+
+T-statistic will be = |(-0.841723 – 1)/ 1.023928|= 1.7986
+
+For two-sided 5% critical value for student t-distribution with 262-2 = 260 degrees of freedom is around 1.96. Hence, we fail to reject B1 = 1 at 5% level. So, at this stage for US_AUD, the result indicates that the no arbitrage condition in this carry trade is satisfied at 5% level.
+
+•	US_GBP:
+
+Similarly, like above for US_GBP, we know that SE(standard error) = 9.834e-01, then 
+
+T-statistic will be = |(2.74e-01– 1)/9.834e-01| = 0.5059
+
+For two-sided 5% critical value for student t-distribution with 262-2 = 260 degrees of freedom is around 1.96. Hence, we fail to reject B1 = 1 at 5% level. So, at this stage for US_GBP, the result indicates that the no arbitrage condition in this carry trade is satisfied at 5% level.
+
+•	US_JPY:
+
+Similarly, like above for US_JPY, we know that SE(standard error) = 0.996437  , then 
+
+T-statistic will be = (-2.038724– 1)/ 0.996437 = 3.049
+
+For two-sided 5% critical value for student t-distribution with 262-2 = 260 degrees of freedom is around 1.96. Hence, we will reject B1 = 1 at 5% level. So, at this stage for US_JPY, the result indicates that the no arbitrage condition in this carry trade is violated at 5% level.
