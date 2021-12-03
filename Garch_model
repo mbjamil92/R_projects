@@ -1,0 +1,237 @@
+> rt = log(0.457+1)
+> plot(rt, type="l", main="Log-returns of the Stock")
+> rt
+
+
+> garch_fit_rt = garchFit(~garch(1,1),rt)
+
+Series Initialization:
+ ARMA Model:                arma
+ Formula Mean:              ~ arma(0, 0)
+ GARCH Model:               garch
+ Formula Variance:          ~ garch(1, 1)
+ ARMA Order:                0 0
+ Max ARMA Order:            0
+ GARCH Order:               1 1
+ Max GARCH Order:           1
+ Maximum Order:             1
+ Conditional Dist:          norm
+ h.start:                   2
+ llh.start:                 1
+ Length of Series:          1
+ Recursion Init:            mci
+ Series Scale:              NA
+
+> q3_data = read.csv("D:/Yeshiva/Summer 2021/datasets/gm_sp500.txt",header=T, sep="")
+> gm = q3_data$gm
+> sp = q3_data$sp
+> gm_log_rt = log(q3_data[,3]+1)
+> plot(gm_log_rt, type="l", main="Log-returns of GM Stock")
+
+> install.packages("fGarch")
+> library(fGarch)
+Loading required package: timeDate
+Loading required package: timeSeries
+Loading required package: fBasics
+Warning messages:
+1: package ‘fGarch’ was built under R version 3.6.3 
+2: package ‘fBasics’ was built under R version 3.6.3 
+
+
+> # compute daily percentage changes
+> gm_percentage = data.frame("Date" = q3_data$date, "value" = as.numeric(Delt(q3_data$gm)*100))
+> gm_percentage = na.omit(gm_percentage)
+
+Testing with 1,1 Model:
+
+> garch_gm_fit = garchFit(~garch(1,1),gm_log_rt)
+
+
+Output for (1,1) Model:
+> summary(garch_gm_fit)
+
+Title:
+ GARCH Modelling 
+
+Call:
+ garchFit(formula = ~garch(1, 1), data = gm_log_rt) 
+
+Mean and Variance Equation:
+ data ~ garch(1, 1)
+<environment: 0x00000169c9a664c0>
+ [data = gm_log_rt]
+
+Conditional Distribution:
+ norm 
+
+Coefficient(s):
+        mu       omega      alpha1       beta1  
+6.2132e-03  8.0993e-05  1.1425e-01  8.4887e-01  
+
+Std. Errors:
+ based on Hessian 
+
+Error Analysis:
+        Estimate  Std. Error  t value Pr(>|t|)    
+mu     6.213e-03   1.412e-03    4.400 1.08e-05 ***
+omega  8.099e-05   3.379e-05    2.397   0.0165 *  
+alpha1 1.142e-01   2.648e-02    4.315 1.60e-05 ***
+beta1  8.489e-01   2.803e-02   30.286  < 2e-16 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Log Likelihood:
+ 1268.41    normalized:  1.79154 
+
+Description:
+ Fri Aug 13 01:14:11 2021 by user: HP 
+
+
+Standardised Residuals Tests:
+                                Statistic p-Value     
+ Jarque-Bera Test   R    Chi^2  177.6952  0           
+ Shapiro-Wilk Test  R    W      0.9735008 5.058713e-10
+ Ljung-Box Test     R    Q(10)  10.22153  0.4212773   
+ Ljung-Box Test     R    Q(15)  15.16213  0.4398033   
+ Ljung-Box Test     R    Q(20)  19.52303  0.488099    
+ Ljung-Box Test     R^2  Q(10)  5.982056  0.8167685   
+ Ljung-Box Test     R^2  Q(15)  6.912373  0.9600358   
+ Ljung-Box Test     R^2  Q(20)  7.662483  0.9938757   
+ LM Arch Test       R    TR^2   6.191671  0.9061132   
+
+Information Criterion Statistics:
+      AIC       BIC       SIC      HQIC 
+-3.571780 -3.546003 -3.571843 -3.561821 
+
+Testing with Model (2,2):-
+
+>garch_gm_fit2 = garchFit(~garch(2,2),gm_log_rt)
+
+
+Output with Model (2,2):-
+
+> summary(garch_gm_fit2)
+
+Title:
+ GARCH Modelling 
+
+Call:
+ garchFit(formula = ~garch(2, 2), data = gm_log_rt) 
+
+Mean and Variance Equation:
+ data ~ garch(2, 2)
+<environment: 0x00000169c05a3e40>
+ [data = gm_log_rt]
+
+Conditional Distribution:
+ norm 
+
+Coefficient(s):
+        mu       omega      alpha1      alpha2       beta1       beta2  
+5.8024e-03  7.6569e-05  5.6869e-02  1.0053e-01  8.1623e-01  1.0000e-08  
+
+Std. Errors:
+ based on Hessian 
+
+Error Analysis:
+        Estimate  Std. Error  t value Pr(>|t|)    
+mu     5.802e-03   1.386e-03    4.187 2.83e-05 ***
+omega  7.657e-05   5.083e-05    1.506    0.132    
+alpha1 5.687e-02   4.010e-02    1.418    0.156    
+alpha2 1.005e-01   6.572e-02    1.530    0.126    
+beta1  8.162e-01   5.251e-01    1.555    0.120    
+beta2  1.000e-08   4.539e-01    0.000    1.000    
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Log Likelihood:
+ 1269.894    normalized:  1.793636 
+
+Description:
+ Fri Aug 13 02:11:56 2021 by user: HP 
+
+
+Standardised Residuals Tests:
+                                Statistic p-Value     
+ Jarque-Bera Test   R    Chi^2  172.6565  0           
+ Shapiro-Wilk Test  R    W      0.9728181 3.422327e-10
+ Ljung-Box Test     R    Q(10)  10.01194  0.4394465   
+ Ljung-Box Test     R    Q(15)  15.45755  0.4189883   
+ Ljung-Box Test     R    Q(20)  19.62099  0.4818514   
+ Ljung-Box Test     R^2  Q(10)  6.331315  0.7867021   
+ Ljung-Box Test     R^2  Q(15)  7.015474  0.9572189   
+ Ljung-Box Test     R^2  Q(20)  7.648693  0.9939486   
+ LM Arch Test       R    TR^2   6.546107  0.8860956   
+
+Information Criterion Statistics:
+      AIC       BIC       SIC      HQIC 
+-3.570323 -3.531658 -3.570465 -3.555385 
+
+Testing with Model (3,3):-
+
+garch_gm_fit3 = garchFit(~garch(3,3),gm_log_rt)
+
+
+Output with Model (3,3):-
+
+> summary(garch_gm_fit3)
+
+Title:
+ GARCH Modelling 
+
+Call:
+ garchFit(formula = ~garch(3, 3), data = gm_log_rt) 
+
+Mean and Variance Equation:
+ data ~ garch(3, 3)
+<environment: 0x00000169c9b6c308>
+ [data = gm_log_rt]
+
+Conditional Distribution:
+ norm 
+
+Coefficient(s):
+        mu       omega      alpha1      alpha2      alpha3       beta1       beta2  
+0.00641310  0.00021640  0.08717552  0.06933181  0.21903556  0.00000001  0.00000001  
+     beta3  
+0.53847133  
+
+Std. Errors:
+ based on Hessian 
+
+Error Analysis:
+        Estimate  Std. Error  t value Pr(>|t|)    
+mu     6.413e-03   1.376e-03    4.662 3.14e-06 ***
+omega  2.164e-04   8.224e-05    2.631   0.0085 ** 
+alpha1 8.718e-02   3.221e-02    2.707   0.0068 ** 
+alpha2 6.933e-02          NA       NA       NA    
+alpha3 2.190e-01   4.950e-02    4.425 9.64e-06 ***
+beta1  1.000e-08   8.173e-02    0.000   1.0000    
+beta2  1.000e-08          NA       NA       NA    
+beta3  5.385e-01          NA       NA       NA    
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Log Likelihood:
+ 1275.097    normalized:  1.800985 
+
+Description:
+ Fri Aug 13 02:16:43 2021 by user: HP 
+
+
+Standardised Residuals Tests:
+                                Statistic p-Value     
+ Jarque-Bera Test   R    Chi^2  110.3875  0           
+ Shapiro-Wilk Test  R    W      0.9770718 4.351593e-09
+ Ljung-Box Test     R    Q(10)  10.04853  0.4362459   
+ Ljung-Box Test     R    Q(15)  15.3285   0.4280239   
+ Ljung-Box Test     R    Q(20)  20.35834  0.4357237   
+ Ljung-Box Test     R^2  Q(10)  5.755261  0.8353889   
+ Ljung-Box Test     R^2  Q(15)  7.144288  0.9535214   
+ Ljung-Box Test     R^2  Q(20)  7.801421  0.9931021   
+ LM Arch Test       R    TR^2   6.234565  0.9037989   
+
+Information Criterion Statistics:
+      AIC       BIC       SIC      HQIC 
+-3.579371 -3.527818 -3.579623 -3.559453 
+
