@@ -1,0 +1,47 @@
+Code: 
+
+> win=100
+> length(rt1_jpy)
+> m=n-win+1
+> beta_aud=array(0,c(m,1))
+> for(i in 1:m){
++ fit=lm(rt1_aud[i:(i+win-1)]~rt2_aud[i:(i+win-1)])
++ beta_aud[i]=fit$coef[2]
++ }
+> plot(beta_aud)
+> beta_aud
+
+From the above shared ‘rolling regressing’ plot of beta, we can draw a conclusion that beta changes with time, and it is less than 0 for most of the indexes. Since, here we can see that in some instances starting from 125 indexes beta becomes greater than 0. According to me, there is no arbitrage chance.
+
+
+•	For US_GBP pair:
+
+Code:
+
+> win=100
+> length(rt1_gbp)
+> m=n-win+1
+> beta_gbp=array(0,c(m,1))
+> for(i in 1:m){
++ fit=lm(rt1_gbp[i:(i+win-1)]~rt2_gbp[i:(i+win-1)])
++ beta_gbp[i]=fit$coef[2]
++ }
+> plot(beta_gbp)
+
+From the above shared ‘rolling regressing’ plot of beta, we can draw a conclusion that beta changes with time again as seen previously. It is mostly less than 0 for most of the indexes. But, from indexes 0 – 49 beta is greater than 0. According to me, there is no arbitrage chance.
+
+
+
+•	For US_JPY pair:
+
+Code:
+
+> win=100
+> length(rt1_jpy)
+> m=n-win+1
+> beta_jpy=array(0,c(m,1))
+> for(i in 1:m){
++ fit=lm(rt1_jpy[i:(i+win-1)]~rt2_jpy[i:(i+win-1)])
++ beta_jpy[i]=fit$coef[2]
++ }
+> plot(beta_jpy)
