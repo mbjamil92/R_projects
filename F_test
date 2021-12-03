@@ -1,0 +1,33 @@
+Doing Anova for Model #1:
+> anova(model_1)
+Analysis of Variance Table
+
+Response: rt
+           Df  Sum Sq Mean Sq F value    Pr(>F)    
+mkt         1   879.8  879.80  18.787 1.687e-05 ***
+Residuals 667 31235.3   46.83                      
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Doing Anova for Model #2:
+
+> anova(model_2)
+Analysis of Variance Table
+
+Response: rt
+           Df  Sum Sq Mean Sq F value    Pr(>F)    
+mkt         1   879.8  879.80 19.6249 1.102e-05 ***
+smb         1    13.4   13.43  0.2995    0.5844    
+hml         1  1409.5 1409.47 31.4399 3.017e-08 ***
+Residuals 665 29812.4   44.83                      
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Final Verdict:
+
+Based on the null hypothesis only beta(1) value of model # 2 will be applicable, and then after looking at the above-mentioned P-values for both the models which are below 5% I will still pick model #2 since its P(value) is more less than the P(value) of Model#1. As shown below:
+
+
+P(Value) of Model #1: 1.687e-05
+P(Value) of Model #2: 1.102e-05
+
