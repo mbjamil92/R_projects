@@ -1,0 +1,113 @@
+Estimates for US_AUD:
+
+> us_aud_data=read.csv("D:/Yeshiva/Summer 2021/datasets/USD_AUD.txt",header=T,sep='\t')
+> n0_aud=length(us_aud_data$Spot)
+> size.us_aud_data=dim(us_aud_data)
+> scd_aud=log(us_aud_data$Spot)
+> fcd_aud=log(us_aud_data$Forward)
+> rt1_aud=scd_aud[2:size.us_aud_data[1]]-scd_aud[1:(size.us_aud_data[1]-1)]
+> rt2_aud=fcd_aud[1:(size.us_aud_data[1]-1)]-scd_aud[1:(size.us_aud_data[1]-1)]
+> model_aud = lm(rt1_aud~rt2_aud)
+> summary(model_aud)
+
+
+Output for US_AUD:
+Call:
+lm(formula = rt1_aud ~ rt2_aud)
+
+Residuals:
+      Min        1Q    Median        3Q       Max 
+-0.170660 -0.018433  0.000177  0.020034  0.098407 
+
+Coefficients:
+             Estimate Std. Error t value Pr(>|t|)
+(Intercept) -0.001162   0.002903  -0.400    0.689
+rt2_aud     -0.841723   1.023928  -0.822    0.412
+
+Residual standard error: 0.03309 on 260 degrees of freedom
+  (2539 observations deleted due to missingness)
+Multiple R-squared:  0.002592,	Adjusted R-squared:  -0.001244 
+F-statistic: 0.6758 on 1 and 260 DF,  p-value: 0.4118
+
+The values from the above data are:
+
+B0 = -0.001162   
+B1 = -0.841723   
+
+
+Estimates for US_GBP:
+
+> us_gbp_data=read.csv("D:/Yeshiva/Summer 2021/datasets/USD_GBP.txt",header=T,sep='\t')
+> n0_gbp=length(us_gbp_data$Spot)
+> size.us_gbp_data=dim(us_gbp_data)
+> scd_gbp=log(us_gbp_data$Spot)
+> fcd_gbp=log(us_gbp_data$Forward)
+> rt1_gbp=scd_gbp[2:size.data[1]]-scd_gbp[1:(size.data[1]-1)]
+> rt2_gbp=fcd_gbp[1:(size.us_gbp_data[1]-1)]-scd_gbp[1:(size.us_gbp_data[1]-1)]
+> model_gbp1 = lm(rt1_gbp~rt2_gbp)
+> summary(model_gbp)
+
+
+Output for US_GBP:
+
+Call:
+lm(formula = rt1_gbp ~ rt2_gbp)
+
+Residuals:
+      Min        1Q    Median        3Q       Max 
+-0.129828 -0.014920  0.000258  0.018542  0.090473 
+
+Coefficients:
+              Estimate Std. Error t value Pr(>|t|)
+(Intercept) -1.209e-05  2.396e-03  -0.005    0.996
+rt2_gbp      2.742e-01  9.834e-01   0.279    0.781
+
+Residual standard error: 0.02858 on 260 degrees of freedom
+  (2539 observations deleted due to missingness)
+Multiple R-squared:  0.000299,	Adjusted R-squared:  -0.003546 
+F-statistic: 0.07777 on 1 and 260 DF,  p-value: 0.7806
+
+The values from the above data are:
+
+B0 = -1.209e-05  
+B1 = 2.742e-01  
+
+
+Estimates for US_JPY:
+
+> us_jpy_data=read.csv("D:/Yeshiva/Summer 2021/datasets/USD_JPY.txt",header=T,sep='\t')
+> n0_jpy=length(us_jpy_data$Spot)
+> size.us_jpy_data=dim(us_jpy_data)
+> scd_jpy=log(us_jpy_data$Spot)
+> fcd_jpy=log(us_jpy_data$Forward)
+> rt1_jpy=scd_jpy[2:size.us_jpy_data[1]]-scd_jpy[1:(size.us_jpy_data[1]-1)]
+> rt2_jpy=fcd_jpy[1:(size.us_jpy_data[1]-1)]-scd_jpy[1:(size.us_jpy_data[1]-1)]
+> model_jpy = lm(rt1_jpy~rt2_jpy)
+> summary(model_jpy)
+
+Output for US_JPY:
+
+Call:
+lm(formula = rt1_jpy ~ rt2_jpy)
+
+Residuals:
+      Min        1Q    Median        3Q       Max 
+-0.164958 -0.021632  0.002552  0.019212  0.094379 
+
+Coefficients:
+             Estimate Std. Error t value Pr(>|t|)  
+(Intercept) -0.006503   0.003081  -2.111   0.0357 *
+rt2_jpy     -2.038724   0.996437  -2.046   0.0418 *
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 0.03215 on 260 degrees of freedom
+  (2539 observations deleted due to missingness)
+Multiple R-squared:  0.01585,	Adjusted R-squared:  0.01206 
+F-statistic: 4.186 on 1 and 260 DF,  p-value: 0.04176
+
+
+The values from the above data are:
+
+B0 = -0.006503   
+B1 = -2.038724   
