@@ -1,0 +1,27 @@
+> ekc_data = read.csv("D:/Yeshiva/Summer 2021/datasets/ekc.txt", header=T, sep='\t')
+> us_inc=log(ekc_data$pcinc)
+> us_inc_sq = us_inc^2
+> pol = log(ekc_data$so2)
+> fit = lm(pol~us_inc+us_inc_sq)
+> summary(fit)
+
+
+Output:
+Call:
+lm(formula = pol ~ us_inc + us_inc_sq)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-3.7565 -0.5681 -0.0600  0.5258  2.5138 
+
+Coefficients:
+             Estimate Std. Error t value Pr(>|t|)    
+(Intercept) -51.84671    3.27758  -15.82   <2e-16 ***
+us_inc       11.62206    0.74622   15.57   <2e-16 ***
+us_inc_sq    -0.67680    0.04237  -15.97   <2e-16 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 0.8771 on 3165 degrees of freedom
+Multiple R-squared:  0.1012,	Adjusted R-squared:  0.1007 
+F-statistic: 178.2 on 2 and 3165 DF,  p-value: < 2.2e-16
